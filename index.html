@@ -39,6 +39,8 @@
 
 <body>
   
+  <canvas width="1777" height="841" style="position: fixed; left: 0px; top: 0px; z-index: 999; pointer-events: none;"></canvas>
+  
   <div id="app">
     <main class="content on">
       
@@ -112,58 +114,6 @@
     
 
     
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-
-      
-      <h3 id="Question-Description"><a href="#Question-Description" class="headerlink" title="Question Description:"></a>Question Description:</h3><p>Given a constant <em>K</em> and a singly linked list <em>L</em>, you are supposed to reverse the links of every <em>K</em> elements on <em>L</em>. For example, given <em>L</em> being 1→2→3→4→5→6, if <em>K</em>=3, then you must output 3→2→1→6→5→4; if <em>K</em>=4, you must output 4→3→2→1→5→6.</p>
-<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. For each case, the first line contains the address of the first node, a positive <em>N</em> (≤105) which is the total number of nodes, and a positive <em>K</em> (≤<em>N</em>) which is the length of the sublist to be reversed. The address of a node is a 5-digit nonnegative integer, and NULL is represented by -1.</p>
-<p>Then <em>N</em> lines follow, each describes a node in the format:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Address Data Next</span><br></pre></td></tr></table></figure>
-
-<p>where <code>Address</code> is the position of the node, <code>Data</code> is an integer, and <code>Next</code> is the position of the next node.</p>
-<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>For each case, output the resulting ordered linked list. Each node occupies a line, and is printed in the same format as in the input.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">00100 6 4</span><br><span class="line">00000 4 99999</span><br><span class="line">00100 1 12309</span><br><span class="line">68237 6 -1</span><br><span class="line">33218 3 00000</span><br><span class="line">99999 5 68237</span><br><span class="line">12309 2 33218</span><br></pre></td></tr></table></figure>
-
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">00000 4 33218</span><br><span class="line">33218 3 12309</span><br><span class="line">12309 2 00100</span><br><span class="line">00100 1 99999</span><br><span class="line">99999 5 68237</span><br><span class="line">68237 6 -1</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>给了一个单链表，一个常量K</p>
-<p>在链表上的每K个元素置换一下位置，如果不满则直接输出。</p>
-<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><ol>
-<li><p>用结构体数组存储链表，node[i]表示地址为i的结点。</p>
-</li>
-<li><p>用大小为K的栈来逆转，扫描链表，访问一个节点，看栈是否满了，</p>
-<p>如果满了则把元素pop到ans数组中</p>
-<p>如果元素访问完了，栈还没有满，则把栈中原始pop到temp数组中（倒序放入ans数组）</p>
-</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stack&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">100000</span>;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span>&#123;</span></span><br><span class="line">	<span class="keyword">int</span> id,data,nextid;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">/* run this program using the console pauser or add your own getch, system("pause") or input loop */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> <span class="built_in">begin</span>,n,k,id,data,nextid;</span><br><span class="line">	node a[maxn];</span><br><span class="line">	<span class="built_in">vector</span>&lt;node&gt; ans;</span><br><span class="line">	<span class="built_in">stack</span>&lt;node&gt; s;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;<span class="built_in">begin</span>,&amp;n,&amp;k);</span><br><span class="line">	node temp[k];</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;id);</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;a[id].data,&amp;a[id].nextid);</span><br><span class="line">		a[id].id=id;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//扫描链表</span></span><br><span class="line">	<span class="keyword">for</span>(;<span class="built_in">begin</span>!=<span class="number">-1</span>;<span class="built_in">begin</span>=a[<span class="built_in">begin</span>].nextid)&#123;</span><br><span class="line">		<span class="keyword">if</span>(s.<span class="built_in">size</span>()==k)&#123;</span><br><span class="line">			<span class="comment">//输出栈中元素到ans</span></span><br><span class="line">			<span class="keyword">while</span>(s.<span class="built_in">size</span>()!=<span class="number">0</span>)&#123;</span><br><span class="line">				ans.push_back(s.top());</span><br><span class="line">				s.pop();</span><br><span class="line">			&#125; </span><br><span class="line">		&#125;</span><br><span class="line">		s.push(a[<span class="built_in">begin</span>]); </span><br><span class="line">	&#125;</span><br><span class="line">    <span class="comment">//扫描完成后，对栈进行处理</span></span><br><span class="line">	<span class="keyword">if</span>(s.<span class="built_in">size</span>()==k)&#123;</span><br><span class="line">        <span class="comment">//输出栈中元素到ans</span></span><br><span class="line">		<span class="keyword">while</span>(s.<span class="built_in">size</span>()!=<span class="number">0</span>)&#123;</span><br><span class="line">				ans.push_back(s.top());</span><br><span class="line">				s.pop();</span><br><span class="line">			&#125; </span><br><span class="line">	&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="number">0</span>&lt;s.<span class="built_in">size</span>() &amp;&amp; s.<span class="built_in">size</span>()&lt;k)&#123;</span><br><span class="line">        <span class="comment">//清空栈，转移到数组中</span></span><br><span class="line">		<span class="keyword">int</span> t = s.<span class="built_in">size</span>();</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t;i++)&#123;</span><br><span class="line">			temp[i] = s.top();</span><br><span class="line">			s.pop();</span><br><span class="line">		&#125;</span><br><span class="line">        <span class="comment">//未满k个元素，在栈中顺序颠倒了，所以倒叙输出元素到ans</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=t<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">			ans.push_back(temp[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//输出ans中的元素</span></span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ans.<span class="built_in">size</span>()<span class="number">-1</span>;i++)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%05d %d %05d\n"</span>,ans[i].id,ans[i].data,ans[i+<span class="number">1</span>].id);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%05d %d -1\n"</span>,ans[ans.<span class="built_in">size</span>()<span class="number">-1</span>].id,ans[ans.<span class="built_in">size</span>()<span class="number">-1</span>].data);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<hr>
-<h3 id="柳婼大神："><a href="#柳婼大神：" class="headerlink" title="柳婼大神："></a>柳婼大神：</h3><ol>
-<li>使用两个数组存储链表，data[id]是地址为id的值，next[id]是地址为id的连接的下一个结点的地址</li>
-<li>遍历链表，把乱序输入的链表，顺序存储到temp中，temp[i]表示链表中第i个节点的地址。</li>
-<li>通过<strong>数学关系</strong>，把temp[i]映射到result[]数组中去。</li>
-<li>遍历result输出结果</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn =<span class="number">100000</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> <span class="built_in">begin</span>,temp,n,k,data[maxn],next[maxn],<span class="built_in">list</span>[maxn],result[maxn],sum=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;<span class="built_in">begin</span>&gt;&gt;n&gt;&gt;k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;temp;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;data[temp]&gt;&gt;next[temp];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">begin</span>!=<span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="built_in">list</span>[sum++]=data[<span class="built_in">begin</span>];</span><br><span class="line">        first=next[<span class="built_in">begin</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;sum;i++) result[i] = <span class="built_in">list</span>[i];</span><br><span class="line">    <span class="comment">//把list映射到result中需要交换sum - sum/k次</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;sum-sum%k;i++)&#123;</span><br><span class="line">        result[i] = <span class="built_in">list</span>[i+k<span class="number">-1</span>-i%k];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;sum<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%05d %d %05d\n"</span>,result[i],data[result[i]],result[i+<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%05d %d -1\n"</span>,result[sum<span class="number">-1</span>],data[result[sum<span class="number">-1</span>]]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-      
-      <!-- reward -->
-      
-    </div>
     
     
       <!-- copyright -->
@@ -200,7 +150,7 @@
     <ul>
       <li>
         Copyrights &copy;
-        2015-2020
+        2020
         <i class="ri-heart-fill heart_icon"></i> liuxin
       </li>
     </ul>
@@ -277,14 +227,6 @@
       <a class="nav-item-link" href="/tags">标签</a>
     </li>
     
-    <!-- <li class="nav-item">
-      <a class="nav-item-link" href="/tags/%E6%97%85%E8%A1%8C/">旅行</a>
-    </li>
-    
-    <li class="nav-item">
-      <a class="nav-item-link" href="http://shenyu-vip.lofter.com" target="_blank" rel="noopener">摄影</a>
-    </li> -->
-    
     <li class="nav-item">
       <a class="nav-item-link" href="/2019/about">关于我</a>
     </li>
@@ -323,7 +265,7 @@
     <div id="mask"></div>
 
 <!-- #reward -->
-<!-- <div id="reward">
+<div id="reward">
   <span class="close"><i class="ri-close-line"></i></span>
   <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
   <div class="reward-box">
@@ -340,7 +282,7 @@
     </div>
     
   </div>
-</div> -->
+</div>
     
 <script src="/js/jquery-2.0.3.min.js"></script>
 
@@ -495,6 +437,10 @@
 
 <!-- ClickBoom -->
 
+
+<script src="/js/clickBoom.js"></script>
+
+
 <!-- CodeCopy -->
 
 
@@ -557,6 +503,23 @@
 
 
 
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="52"
+        src="//music.163.com/outchain/player?type=2&id=22707008&auto=1&height=32"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
     
   </div>
 </body>
