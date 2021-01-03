@@ -9,7 +9,7 @@
     
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    PAT:1121 Damn Single |  LiuXin Blog
+    《怎样成为高效学习的人》 | 笔记 |  LiuXin Blog
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -42,7 +42,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-2020-06-02-1" class="article article-type-post" itemscope
+  <article id="post-怎样成为高效学习的人-笔记" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -50,7 +50,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  PAT:1121 Damn Single
+  《怎样成为高效学习的人》 | 笔记
 </h1>
  
 
@@ -59,12 +59,12 @@
 
     
     <div class="article-meta">
-      <a href="/2020/06/02/2020-06-02-1/" class="article-date">
-  <time datetime="2020-06-02T14:32:30.000Z" itemprop="datePublished">2020-06-02</time>
+      <a href="/2021/01/03/%E6%80%8E%E6%A0%B7%E6%88%90%E4%B8%BA%E9%AB%98%E6%95%88%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%BA%BA-%E7%AC%94%E8%AE%B0/" class="article-date">
+  <time datetime="2021-01-03T13:09:43.000Z" itemprop="datePublished">2021-01-03</time>
 </a>
       
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+    <a class="article-category-link" href="/categories/%E5%86%99%E4%BD%9C/">写作</a>
   </div>
 
       
@@ -74,7 +74,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">619</span>
+            <span class="post-count">1.4k</span>
         </span>
     </span>
 
@@ -83,7 +83,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">3 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
@@ -108,34 +108,56 @@
       
 
       
-      <h3 id="Question-Description"><a href="#Question-Description" class="headerlink" title="Question Description:"></a>Question Description:</h3><p>“Damn Single (单身狗)” is the Chinese nickname for someone who is being single. You are supposed to find those <strong>who are alone</strong> in a big party, so they can be taken care of.</p>
-<h3 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification:"></a>Input Specification:</h3><p>Each input file contains one test case. For each case, the first line gives a positive integer N (≤ 50,000), the total number of couples. Then N lines of the couples follow, each gives a couple of ID’s which are 5-digit numbers (i.e. from 00000 to 99999). After the list of couples, there is a positive integer M (≤ 10,000) followed by M ID’s of the party guests. The numbers are separated by spaces. It is guaranteed that nobody is having bigamous marriage (重婚) or dangling with more than one companion.</p>
-<h3 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification:"></a>Output Specification:</h3><p>First print in a line the total number of lonely guests. Then in the next line, print their ID’s in increasing order. The numbers must be separated by exactly 1 space, and there must be no extra space at the end of the line.</p>
-<h3 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">11111 22222</span><br><span class="line">33333 44444</span><br><span class="line">55555 66666</span><br><span class="line">7</span><br><span class="line">55555 44444 10000 88888 22222 11111 23333</span><br></pre></td></tr></table></figure>
-
-<h3 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">5</span><br><span class="line">10000 23333 44444 55555 88888</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h3 id="题目大意："><a href="#题目大意：" class="headerlink" title="题目大意："></a>题目大意：</h3><p>给出一个夫妻关系列表，给出参加宴会的人员名单，根据复习关系列表判断与会人员的是否是single，最后输出single人数，并且升序输出他们ID</p>
-<h3 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h3><ol>
-<li>使用数组存储每个人的结婚情况    a[ID] = 配偶ID  </li>
-<li>使用数组存储每个人参加宴会的情况 b[ID] = true</li>
-<li>扫描参加宴会的人员，如果是Single （a[ID] == maxn)  ，或者是有配偶但是没参加宴会， 则加入ans数组</li>
-<li>对ans升序排序，输出</li>
-</ol>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> maxn = <span class="number">1000000</span>;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">cmp</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a &lt; b; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n, m, boy, girl, guest;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; ans;</span><br><span class="line">	<span class="keyword">int</span> a[<span class="number">100001</span>] = &#123;maxn&#125;;</span><br><span class="line">	<span class="keyword">bool</span> b[<span class="number">100001</span>] = &#123;<span class="literal">false</span>&#125;;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;boy, &amp;girl);</span><br><span class="line">		a[boy] = girl;</span><br><span class="line">		a[girl] = boy;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;m);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;guest);</span><br><span class="line">		b[guest] = <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100001</span>; i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(b[i] == <span class="literal">true</span> &amp;&amp; (a[i] == maxn || b[a[i]] == <span class="literal">false</span>))</span><br><span class="line">			ans.push_back(i);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(ans.<span class="built_in">begin</span>(),ans.<span class="built_in">end</span>(),cmp);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans.<span class="built_in">size</span>());</span><br><span class="line">	<span class="keyword">if</span>(ans.<span class="built_in">size</span>() &gt; <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%05d"</span>, ans[<span class="number">0</span>]);</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; ans.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">" %05d"</span>, ans[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention:"></a>Attention:</h3><p>输出格式需要注意，容易出现段错误  少使用ans.size()-1，容易越界</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans.<span class="built_in">size</span>());</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; ans.<span class="built_in">size</span>() - <span class="number">1</span>; i++)&#123;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%05d "</span>, ans[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%05d"</span>, ans[ans.<span class="built_in">size</span>()<span class="number">-1</span>]);<span class="comment">//如果为0，数组访问越界</span></span><br></pre></td></tr></table></figure>
-
-<p>替换为</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans.<span class="built_in">size</span>());</span><br><span class="line"><span class="keyword">if</span>(ans.<span class="built_in">size</span>() &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%05d"</span>, ans[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; ans.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">" %05d"</span>, ans[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
+      <h2 id="怎样成为高效学习的人"><a href="#怎样成为高效学习的人" class="headerlink" title="怎样成为高效学习的人"></a>怎样成为高效学习的人</h2><p>学习遍布在各个地方：工作中，生活中，教育中（德育，智育，体育，美育）许多地方都需要学习，学习也需要他们这些真实且具体的场景作为背景来展开。</p>
+<p>我们之所以要系统的掌握学习方法，不仅仅是因为我们热爱学习，还因为随着环境的不断变化，我们在学习路上遇到了新的拦路虎。比如注意力涣散，就是其中之一。</p>
+<p>目前，全世界的教育专家，和学习技术的研究者们都有一个共识，那就是：我们现在存在着一种最好的学习方式。这种学习方式就叫做任务式学习——用真实的任务、项目、目标来牵引自己的学习。</p>
+<p>基于任务式学习，学习可以定义为：为了高质量的完成某个具体的任务、项目、目标，缩小现在能力与达成这个任务所需要的能力之间的差距的过程（例如，读书）</p>
+<p>我们每个人都必须自己做自己的导师，自己给自己制定学习目标，自己给自己找到学习资源，自己给自己交付好的学习成果。这就是终身学习的特点。</p>
+<h3 id="01-怎样找到更好的学习资源"><a href="#01-怎样找到更好的学习资源" class="headerlink" title="01 怎样找到更好的学习资源"></a>01 怎样找到更好的学习资源</h3><p>学习，简而言之就是学与习，也就是模仿与练习。那么模仿的对象就非常关键了，好的学习对象不仅能让我们容易理解，易于模仿，还能让我们方便练习。</p>
+<p>寻找三种学习资源的方式：</p>
+<ul>
+<li><p>第一种，也是最简单的方式，搜索</p>
+</li>
+<li><p>第二种，得到APP</p>
+</li>
+<li><p>第三种，跟人学（三级导师制，分三级找到自己的导师。这三级分别是：入门、进圈和拜佛。）</p>
+<ul>
+<li><p>入门：两张单子(一张写这个领域最牛的人，一张写这个领域最值得看的书)</p>
+</li>
+<li><p>进圈：研究牛人和牛书</p>
+</li>
+<li><p>拜佛：善于问出好问题</p>
+<p>1.请问在像您这样的专家心目中，您这个领域公认的大神是谁？<br>2.我特别遗憾，我一直没有机会系统地去学，您这个领域的知识。我四十多岁了，想从现在开始学起，那在入门阶段，您推荐我读哪本书？<br>3.老师，我想在大学毕业之后从事投资工作。您是做投资的，您觉得从事这一行业基本能力的要求是什么？我应该从哪开始作准备？</p>
+<p>4.老师，从事这个行业，您觉得最关键的环节有哪些？您都遇到过哪几个重要挑战？您是怎么过来的？<br>5.在您这个领域，您觉得一般人和高手之间最大的区别是什么？<br>6.如果您要带一个徒弟，您会重点教他关注哪几个魔鬼细节？为什么是这几个细节特别重要？</p>
+<p>7.老师，最近好长时间没见了，最近半年您觉得有什么问题、什么新闻或者哪本书，是对您触动特别大的吗？</p>
+<p>8.最近你们行业发生了一件XXX大事，您能帮我分析分析，这背后到底是怎么回事吗？</p>
+<p>9.老师，我现在此时此刻已经在做一件什么事。这个事，我有个难点一直没想明白，能不能请您给我指点一下？</p>
+<p>10.假如，此刻是你生命的最后十分钟。你有个机会，可以给这个世界留下一段话，说说你自己这个专业。请问你会说什么？</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="02-怎样制定更有价值的学习目标"><a href="#02-怎样制定更有价值的学习目标" class="headerlink" title="02 怎样制定更有价值的学习目标"></a>02 怎样制定更有价值的学习目标</h3><p>想要制定出一个有价值的学习目标，就先得知道一个合理的学习目标，要满足哪些条件：</p>
+<p>有场景：我学习的内容是要在哪个地方使用，展示</p>
+<p>有距离：目标和现状的差距，太大难以实现，太小难见效果</p>
+<p>有抓手：要有实施的抓手，也就是有具体可以入手的地方</p>
+<p>有阶梯：一步一步的走，小步子原理</p>
+<h3 id="03-怎样学得更快更好"><a href="#03-怎样学得更快更好" class="headerlink" title="03 怎样学得更快更好"></a>03 怎样学得更快更好</h3><p>怎样学得更快更好，5阶学习法：</p>
+<p>1.测试学习法。先测再学，能让你更有针对性地学习。</p>
+<p>2.指读法。手指到哪，阅读视线就到哪，可以提高阅读效率。</p>
+<p>3.多环境输入法。音频和文字同时输入，可以加强记忆。</p>
+<p>4.记忆宫殿法。把要记忆的内容和熟悉的空间勾连起来，可以快速记忆陌生信息。</p>
+<p>5.刷书法。用帝王的心态去涉猎，能快速扩展视野。</p>
+<h3 id="04-怎样学以致用"><a href="#04-怎样学以致用" class="headerlink" title="04 怎样学以致用"></a>04 怎样学以致用</h3><p>如何学以致用，回到那句话：用输出倒逼输入。</p>
+<p>1.记笔记：</p>
+<p>2.讲小课：费曼学习法</p>
+<p>3.会迁移：这个能用在哪里，不能用在哪里</p>
+<p>4.列清单</p>
+<h3 id="05-怎样让学习过程更愉快"><a href="#05-怎样让学习过程更愉快" class="headerlink" title="05 怎样让学习过程更愉快"></a>05 怎样让学习过程更愉快</h3><p>怎样让学习过程更愉快？</p>
+<p>1.想方设法给自己设置成就感，比如用小本子记笔记。</p>
+<p>2.寻找一个秘密基地，找到一群志同道合的朋友，定期分享自己的学习收获，互相陪伴、互相鼓励。</p>
+<p>3.给自己营造一个专门用来学习的环境场，这个环境场里，只做跟学习有关的事。</p>
+<p>4.每天写自己的《惊奇日记》，给自己的生活做记录和打节奏。</p>
 
       
       <!-- reward -->
@@ -200,15 +222,13 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/06/02/2020-06-02-1/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2021/01/03/%E6%80%8E%E6%A0%B7%E6%88%90%E4%B8%BA%E9%AB%98%E6%95%88%E5%AD%A6%E4%B9%A0%E7%9A%84%E4%BA%BA-%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hash%E6%95%A3%E5%88%97/" rel="tag">Hash散列</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PAT/" rel="tag">PAT</a></li></ul>
-
 
     </footer>
 
@@ -218,19 +238,10 @@
   
   <nav class="article-nav">
     
+    
       <a href="/2020/08/13/%E5%9C%A8007%E4%B8%AD%E8%BF%B7%E8%8C%AB%E8%BF%87%E3%80%81%E5%BE%98%E5%BE%8A%E8%BF%87%EF%BC%8C%E4%BD%86%E5%A5%BD%E5%9C%A8%E5%A7%8B%E7%BB%88%E6%9C%89%E4%B8%8D%E7%A6%BB%E4%B8%8D%E5%BC%83%E7%9A%84%E6%88%98%E5%8F%8B%E5%9C%A8%E9%99%AA%E4%BC%B4/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            在007中迷茫过、徘徊过，但好在始终有不离不弃的战友在陪伴
-          
-        </div>
-      </a>
-    
-    
-      <a href="/2020/06/01/2020-06-01-1/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">PAT:1116 Come on! Let&#39;s C</div>
+        <div class="article-nav-title">在007中迷茫过、徘徊过，但好在始终有不离不弃的战友在陪伴</div>
       </a>
     
   </nav>
