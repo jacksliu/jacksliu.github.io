@@ -108,7 +108,7 @@
       
 
       
-      <h3 id="Batch-Normalization"><a href="#Batch-Normalization" class="headerlink" title="Batch Normalization"></a>Batch Normalization</h3><p>这篇Blog主要总结一下Batch Normalization在训练模型的时候的作用，以及具体的实现方法。</p>
+      <h2 id="Batch-Normalization"><a href="#Batch-Normalization" class="headerlink" title="Batch Normalization"></a>Batch Normalization</h2><p>这篇Blog主要总结一下Batch Normalization在训练模型的时候的作用，以及具体的实现方法。</p>
 <h4 id="为什么需要使用Batch-Normalization"><a href="#为什么需要使用Batch-Normalization" class="headerlink" title="为什么需要使用Batch Normalization?"></a>为什么需要使用Batch Normalization?</h4><p>首先了解一下什么是batch、batch_size、和epoch</p>
 <ul>
 <li>epoch: 表示把所有的训练集输入到模型完整地训练一遍。</li>
@@ -118,17 +118,17 @@
 <p>例如batch_size为5，代表模型处理5个样本后，更新一次参数，即进行一次学习。完成batch次训练后，把数据集完整的训练了一遍，即完成了一个epoch。</p>
 <p>batch对模型的训练有着重要的影响，例如batch_size的大小以及每个batch中数据的分布。说到数据的分布，可以batch范围的Normalization和整个数据集的Normalization来调整数据分布。为什么需要使用batch Normalization，可以从训练样本的角度出发来看，但一个batch训练完成后，更新一次参数，因为不同的batch之间可能存在不同的分布，让模型可以更好的识别更多类型的分布。</p>
 <h3 id="为什么要做Normalization"><a href="#为什么要做Normalization" class="headerlink" title="为什么要做Normalization"></a>为什么要做Normalization</h3><p>不同的特征所带来的不同的取值范围会让error surface变得非常崎岖，难以更新参数，对训练会造成阻碍。</p>
-<p><img src="C:%5CUsers%5CLiuXin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210329212111120.png" alt="image-20210329212111120"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210329214334230.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nhbl9zdW4=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <p>而Normalization能让不同的特征有相同的取值范围，大大的改善了error surface，有利于模型的训练</p>
-<p><img src="C:%5CUsers%5CLiuXin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210329212326610.png" alt="image-20210329212326610"></p>
-<h3 id="如何做Normalization"><a href="#如何做Normalization" class="headerlink" title="如何做Normalization"></a>如何做Normalization</h3><p><img src="C:%5CUsers%5CLiuXin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210329212517603.png" alt="image-20210329212517603"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210329214315388.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nhbl9zdW4=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h3 id="如何做Normalization"><a href="#如何做Normalization" class="headerlink" title="如何做Normalization"></a>如何做Normalization</h3><p><img src="https://img-blog.csdnimg.cn/20210329214345921.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nhbl9zdW4=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <p>上面是比较常见的Normalization，能让特征的均值为0，方差为1。</p>
-<p><img src="C:%5CUsers%5CLiuXin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210329212839806.png" alt="image-20210329212839806"></p>
+<p><img src="https://img-blog.csdnimg.cn/202103292143542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nhbl9zdW4=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <p>对于深度神经网络而言，每层hidden layer的input也需要做Normalization，因为经过W矩阵之后，特征的取值范围又发生了变化。</p>
 <p>batch Normalization是发生在训练的时候，那在测试的时候需要怎么做呢？</p>
-<p><img src="C:%5CUsers%5CLiuXin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210329213205269.png" alt="image-20210329213205269"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210329214404191.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nhbl9zdW4=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <p>在测试的时候，可以利用训练时候计算的均值和方差，在测试的时候直接把它们拿过来进行Normalization。</p>
-<p><img src="C:%5CUsers%5CLiuXin%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210329213444995.png" alt="image-20210329213444995"></p>
+<p><img src="https://img-blog.csdnimg.cn/20210329214413350.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Nhbl9zdW4=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
 <p>Batch Normalization 可以帮助Optimization，这种发现也是非常偶然的，可以参见<a href="https://arxiv.org/abs/1805.11604" target="_blank" rel="noopener">How Does Batch Normalization Help Optimization?</a></p>
 <p>Reference：</p>
 <p>李宏毅《机器学习》：<a href="https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.html" target="_blank" rel="noopener">https://speech.ee.ntu.edu.tw/~hylee/ml/2021-spring.html</a></p>
